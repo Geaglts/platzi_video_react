@@ -1,6 +1,9 @@
 import React from "react";
 import "@styles/components/CarouselItem.scss";
 
+import playIcon from "@static/icons/play-icon.png";
+import plusIcon from "@static/icons/plus-icon.png";
+
 const CarouselItem = () => {
     return (
         <div className="carousel-item">
@@ -11,8 +14,8 @@ const CarouselItem = () => {
             />
             <div className="carousel-item__details--container">
                 <div className="carousel-item__details">
-                    <img src="assets/icons/play-icon.png" alt="Icono de play" />
-                    <img src="assets/icons/plus-icon.png" alt="Icono de mas" />
+                    <img src={playIcon} alt="Icono de play" />
+                    <img src={plusIcon} alt="Icono de mas" />
                     <p className="carousel-item__details--title">
                         Título descriptivo
                     </p>

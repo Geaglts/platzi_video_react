@@ -1,6 +1,9 @@
 import React from "react";
 import "@styles/components/Header.scss";
 
+import logo from "@static/img/logo-platzi-video-BW2.png";
+import userIcon from "@static/img/user-icon.png";
+
 // Componente presentational
 const Header = () => {
     const account_text = "Cuenta";
@@ -10,15 +13,12 @@ const Header = () => {
         <header className="header">
             <img
                 className="header__img"
-                src="assets/img/logo-platzi-video-BW2.png"
+                src={logo}
                 alt="Logo de platzi video"
             />
             <div className="header__menu">
                 <div className="header__menu--profile">
-                    <img
-                        src="assets/img/user-icon.png"
-                        alt="Icono del menu desplegable"
-                    />
+                    <img src={userIcon} alt="Icono del menu desplegable" />
                     <p>Perfil</p>
                 </div>
                 <ul>

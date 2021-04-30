@@ -1,4 +1,5 @@
-$blanco: white;
+@import "./Vars";
+@import "./Media";
 
 * {
     margin: 0%;
@@ -8,8 +9,8 @@ $blanco: white;
 }
 
 body {
-    font-family: "Muli", sans-serif;
-    background: linear-gradient(#21c08b, #ab88ff);
+    font-family: $theme-font;
+    background: $main-color;
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
@@ -43,7 +44,7 @@ body {
 .input {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid $blanco;
+    border-bottom: 2px solid $text-color;
     font-size: 16px;
     font-family: "Muli", sans-serif;
     margin-bottom: 20px;
@@ -52,7 +53,7 @@ body {
 }
 
 ::placeholder {
-    color: $blanco;
+    color: $text-color;
 }
 
 .button {
@@ -60,7 +61,7 @@ body {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    color: $blanco;
+    color: $text-color;
     font-family: "Muli", sans-serif;
     font-size: 16px;
     font-weight: bold;
