@@ -2,6 +2,7 @@ const path = require("path");
 const HTMlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { SourceMapDevToolPlugin } = require("webpack");
 
 module.exports = {
     entry: "./src/index.js",
@@ -24,9 +25,8 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                },
+                enforce: "pre",
+                use: ["babel-loader", "source-map-loader"],
             },
             {
                 test: /\.html$/,
@@ -59,5 +59,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "./assets/[name].css",
         }),
+        new SourceMapDevToolPlugin({
+            filename: "[file].map",
+        }),
     ],
+    devtool: "source-map",
 };

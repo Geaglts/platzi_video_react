@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "@styles/App.scss";
 
 import Header from "@components/Header";
@@ -9,6 +9,22 @@ import CarouselItem from "@components/CarouselItem";
 import Footer from "@components/Footer";
 
 const App = () => {
+    const [videos, setVideos] = useState([]);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/initalState");
+            const data = await response.json();
+            setVideos(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <div className="App">
             <Header />
