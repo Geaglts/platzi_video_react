@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+    height: 300px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__title {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.main__input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    font-family: "Muli", sans-serif;
+    height: 50px;
+    padding: 0 20px;
+    width: 70%;
+}

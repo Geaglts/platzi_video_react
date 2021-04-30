@@ -1,0 +1,18 @@
+.footer {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+
+.footer a {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    padding-left: 30px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
