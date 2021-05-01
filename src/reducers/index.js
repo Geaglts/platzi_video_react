@@ -14,6 +14,11 @@ const reducer = (state, action) => {
                     (item) => item.id !== action.payload
                 ),
             };
+        case actions.loginRequest:
+            return {
+                ...state,
+                user: action.payload,
+            };
         default:
             return state;
     }
