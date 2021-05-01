@@ -5,6 +5,7 @@ import Search from "@components/Search";
 import Categories from "@components/Categories";
 import Carousel from "@components/Carousel";
 import CarouselItem from "@components/CarouselItem";
+import Loading from "@components/Loading";
 
 import useInitialState from "../hooks/useInitialState";
 
@@ -14,7 +15,7 @@ const Home = () => {
     const initialState = useInitialState(API);
 
     if (!initialState) {
-        return null;
+        return <Loading />;
     }
 
     return (

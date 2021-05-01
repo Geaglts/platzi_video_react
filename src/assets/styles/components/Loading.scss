@@ -1,0 +1,12 @@
+@import "../Vars.scss";
+
+.loading__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading__container--title {
+    font-size: 18pt;
+    color: $text-color;    
+}

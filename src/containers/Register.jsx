@@ -1,24 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "@styles/components/Register.scss";
 
 const Register = () => {
     return (
-        <section class="register">
-            <section class="register__container">
+        <section className="register">
+            <section className="register__container">
                 <h2>Registrate</h2>
-                <form class="register__container--form">
-                    <input type="text" class="input" placeholder="nombre" />
-                    <input type="text" class="input" placeholder="correo" />
+                <form className="register__container--form">
+                    <input type="text" className="input" placeholder="nombre" />
+                    <input type="text" className="input" placeholder="correo" />
                     <input
                         type="password"
-                        class="input"
+                        className="input"
                         placeholder="contraseña"
                     />
-                    <button class="button">Registrarse</button>
+                    <button className="button">Registrarse</button>
                 </form>
-                <a class="register__container--login" href="/">
+                <Link className="register__container--login" to="/login">
                     Iniciar sesión
-                </a>
+                </Link>
             </section>
         </section>
     );
