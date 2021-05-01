@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "@styles/App.scss";
 
@@ -44,6 +45,12 @@ const mapStateToProps = (state) => {
         trends: state.trends,
         originals: state.originals,
     };
+};
+
+Home.propTypes = {
+    mylist: PropTypes.array,
+    trends: PropTypes.array,
+    originals: PropTypes.array,
 };
 
 export default connect(mapStateToProps, null)(Home);

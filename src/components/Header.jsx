@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutRequest } from "../actions";
 import { Link } from "react-router-dom";
@@ -69,6 +70,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     logoutRequest,
+};
+
+Header.propTypes = {
+    user: PropTypes.object,
+    logoutRequest: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
