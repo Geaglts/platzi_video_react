@@ -21,7 +21,8 @@ const Login = (props) => {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        props.loginRequest(form);
+        const name = form.email.split("@")[0];
+        props.loginRequest({ ...form, name });
         props.history.push("/");
     };
 
