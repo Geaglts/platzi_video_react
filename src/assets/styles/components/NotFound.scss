@@ -1,0 +1,38 @@
+@import "../Vars";
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation-name: pulse;
+    animation-duration: 1s;
+}
+
+.notFound__container {
+    display: flex;
+    height: calc(100vh - 200px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $text-color;
+}
+
+.notFound__title {
+    font-size: 148px;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+.notFound__description {
+    font-size: 18px;
+}
