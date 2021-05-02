@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setFavorite, deleteFavorite } from "../actions";
 import PropTypes from "prop-types";
@@ -28,7 +29,9 @@ const CarouselItem = (props) => {
             />
             <div className="carousel-item__details--container">
                 <div className="carousel-item__details">
-                    <img src={playIcon} alt="Icono de play" />
+                    <Link to={`/player/${id}`}>
+                        <img src={playIcon} alt="Icono de play" />
+                    </Link>
                     {!props.isMyList ? (
                         <img
                             src={plusIcon}
