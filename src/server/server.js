@@ -1,5 +1,4 @@
 import express from "express";
-import mongan from "morgan";
 import dotenv from "dotenv";
 import morgan from "morgan";
 
@@ -11,13 +10,13 @@ const app = express();
 
 // Development config
 if (ENV === "development") {
-    morgan("dev");
+    app.use(morgan("dev"));
 } else {
-    morgan("common");
+    app.use(morgan("common"));
 }
 
-app.get("*", (req, res) => {
-    res.json({ message: "Todo bien en casa" });
+app.get("/", (req, res) => {
+    res.status(200).json({ message: "Todo bien en casa" });
 });
 
 app.listen(PORT, (err) => {
