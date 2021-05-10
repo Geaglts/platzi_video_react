@@ -1,5 +1,5 @@
 import React from "react";
-import "@styles/components/Search.scss";
+import "../assets/styles/components/Search.scss";
 
 const Search = () => {
     const main_title_text = "¿Qué quieres ver hoy?";

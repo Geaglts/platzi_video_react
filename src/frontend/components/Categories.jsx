@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "@styles/components/Categories.scss";
+import "../assets/styles/components/Categories.scss";
 
 const Categories = ({ children, title }) => {
     return (

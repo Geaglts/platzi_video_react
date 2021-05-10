@@ -1,5 +1,5 @@
 import React from "react";
-import "@styles/components/NotFound.scss";
+import "../assets/styles/components/NotFound.scss";
 
 const NotFound = () => {
     return (

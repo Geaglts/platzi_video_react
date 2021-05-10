@@ -3,6 +3,27 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import webpack from "webpack";
 
+// React
+import React from "react";
+import { renderToString } from "react-dom/server";
+
+// React Router
+import { renderRoutes } from "react-router-config";
+import { StaticRouter } from "react-router-dom";
+
+// Server Routes
+import serverRoutes from "../frontend/routes/serverRoutes";
+
+// Redux
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import reducer from "../frontend/reducers";
+
+// Initial state
+import initialState from "../frontend/initialState";
+
+const store = createStore(reducer, initialState);
+
 dotenv.config();
 
 const { ENV, PORT } = process.env;
@@ -25,20 +46,39 @@ if (ENV === "development") {
     app.use(morgan("common"));
 }
 
-app.get("*", (req, res) => {
-    res.send(
-        `<html>
+const setResponse = (html) => {
+    return `
+        <!DOCTYPE html>
+        <html lang="es">
             <head>
-                <title>Platzi video</title>
+                <meta charset="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>Platzi Video</title>
+                <link rel="icon" href="./favicon.ico" />
                 <link href="assets/app.css" type="text/css" rel="stylesheet"/>
             </head>
             <body>
-                <div id="app"></div>
+                <div id="app">${html}</div>
                 <script src="assets/app.js" type="text/javascript"></script>
             </body>
-        </html>`
+        </html>        
+    `;
+};
+
+const renderApp = (req, res) => {
+    const html = renderToString(
+        <Provider store={store}>
+            <StaticRouter location={req.url} context={{}}>
+                {renderRoutes(serverRoutes)}
+            </StaticRouter>
+        </Provider>
     );
-});
+
+    res.send(setResponse(html));
+};
+
+app.get("*", renderApp);
 
 app.listen(PORT, (err) => {
     if (err) console.log(err);

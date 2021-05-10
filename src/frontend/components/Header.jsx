@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutRequest } from "../actions";
 import { Link } from "react-router-dom";
-import "@styles/components/Header.scss";
+import "../assets/styles/components/Header.scss";
 
-import logo from "@static/img/logo-platzi-video-BW2.png";
-import userIcon from "@static/img/user-icon.png";
+import logo from "../assets/static/img/logo-platzi-video-BW2.png";
+import userIcon from "../assets/static/img/user-icon.png";
 
 // Utils
 import gravatar from "../utils/gravatar";

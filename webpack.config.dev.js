@@ -14,37 +14,7 @@ module.exports = {
         publicPath: "/",
     },
     mode: "development",
-    resolve: {
-        extensions: [".js", ".jsx"],
-        alias: {
-            "@components": path.resolve(
-                __dirname,
-                "src",
-                "frontend",
-                "components"
-            ),
-            "@containers": path.resolve(
-                __dirname,
-                "src",
-                "frontend",
-                "containers"
-            ),
-            "@styles": path.resolve(
-                __dirname,
-                "src",
-                "frontend",
-                "assets",
-                "styles"
-            ),
-            "@static": path.resolve(
-                __dirname,
-                "src",
-                "frontend",
-                "assets",
-                "static"
-            ),
-        },
-    },
+    resolve: { extensions: [".js", ".jsx"] },
     module: {
         rules: [
             {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getVideoSource } from "../actions";
-import "@styles/components/Player.scss";
+import "../assets/styles/components/Player.scss";
 
 const Player = (props) => {
     const [loading, setLoading] = useState(true);

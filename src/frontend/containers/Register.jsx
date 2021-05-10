@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerRequest } from "../actions";
 import { Link } from "react-router-dom";
-import "@styles/components/Register.scss";
+import "../assets/styles/components/Register.scss";
 
 const Register = ({ registerRequest, history }) => {
     const [form, setForm] = useState({

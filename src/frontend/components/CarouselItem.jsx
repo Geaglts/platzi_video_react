@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setFavorite, deleteFavorite } from "../actions";
 import PropTypes from "prop-types";
-import "@styles/components/CarouselItem.scss";
+import "../assets/styles/components/CarouselItem.scss";
 
-import playIcon from "@static/icons/play-icon.png";
-import plusIcon from "@static/icons/plus-icon.png";
-import removeIcon from "@static/icons/remove-icon.png";
+import playIcon from "../assets/static/icons/play-icon.png";
+import plusIcon from "../assets/static/icons/plus-icon.png";
+import removeIcon from "../assets/static/icons/remove-icon.png";
 
 const CarouselItem = (props) => {
     const { cover, title, year, contentRating, duration, id } = props;

@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import "@styles/App.scss";
 
-import Search from "@components/Search";
-import Categories from "@components/Categories";
-import Carousel from "@components/Carousel";
-import CarouselItem from "@components/CarouselItem";
+import Search from "../components/Search";
+import Categories from "../components/Categories";
+import Carousel from "../components/Carousel";
+import CarouselItem from "../components/CarouselItem";
 
 const Home = ({ mylist, trends, originals }) => {
     return (
