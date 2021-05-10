@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./reducers";
 
-import is from "../initialState.json";
+import is from "../../initialState.json";
 const stringInitialState = JSON.stringify(is);
 const { initialState } = JSON.parse(stringInitialState);
 initialState.user = {};
