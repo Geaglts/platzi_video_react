@@ -6,6 +6,7 @@ import webpack from "webpack";
 // React
 import React from "react";
 import { renderToString } from "react-dom/server";
+import Layout from "../frontend/components/Layout";
 
 // React Router
 import { renderRoutes } from "react-router-config";
@@ -55,7 +56,6 @@ const setResponse = (html) => {
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Platzi Video</title>
-                <link rel="icon" href="./favicon.ico" />
                 <link href="assets/app.css" type="text/css" rel="stylesheet"/>
             </head>
             <body>
@@ -70,7 +70,7 @@ const renderApp = (req, res) => {
     const html = renderToString(
         <Provider store={store}>
             <StaticRouter location={req.url} context={{}}>
-                {renderRoutes(serverRoutes)}
+                <Layout>{renderRoutes(serverRoutes)}</Layout>
             </StaticRouter>
         </Provider>
     );
