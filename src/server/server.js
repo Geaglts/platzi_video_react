@@ -16,7 +16,7 @@ if (ENV === "development") {
     const webpackHotMiddleware = require("webpack-hot-middleware");
     const compiler = webpack(webpackConfig);
     const { publicPath } = webpackConfig.output;
-    const serverConfig = { serverSideRender: true, publicPath };
+    const serverConfig = { serverSideRender: true, publicPath, hot: true };
 
     app.use(webpackDevMiddleware(compiler, serverConfig));
     app.use(webpackHotMiddleware(compiler));
@@ -26,7 +26,18 @@ if (ENV === "development") {
 }
 
 app.get("*", (req, res) => {
-    res.status(200).json({ message: "Todo bien en casa" });
+    res.send(`
+        <html>
+            <head>
+                <title>Platzi video</title>
+                <link href="assets/app.css" type="text/css" rel="stylesheet"/>
+            </head>
+            <body>
+                <div id="app"></div>
+                <script src="assets/app.js" type="text/javascript"></script>
+            </body>
+        </html>
+    `);
 });
 
 app.listen(PORT, (err) => {

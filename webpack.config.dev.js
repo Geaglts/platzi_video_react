@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const HTMlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { SourceMapDevToolPlugin } = require("webpack");
 
@@ -11,7 +10,7 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
+        filename: "assets/app.js",
         publicPath: "/",
     },
     mode: "development",
@@ -79,13 +78,8 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new HTMlWebpackPlugin({
-            inject: true,
-            template: "./public/index.html",
-            filename: "./index.html",
-        }),
         new MiniCssExtractPlugin({
-            filename: "./assets/[name].css",
+            filename: "./assets/app.css",
         }),
         new SourceMapDevToolPlugin({
             filename: "[file].map",
