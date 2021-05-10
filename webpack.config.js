@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { SourceMapDevToolPlugin } = require("webpack");
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: "./src/frontend/index.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
@@ -15,10 +15,32 @@ module.exports = {
     resolve: {
         extensions: [".js", ".jsx"],
         alias: {
-            "@components": path.resolve(__dirname, "src", "components"),
-            "@containers": path.resolve(__dirname, "src", "containers"),
-            "@styles": path.resolve(__dirname, "src", "assets", "styles"),
-            "@static": path.resolve(__dirname, "src", "assets", "static"),
+            "@components": path.resolve(
+                __dirname,
+                "src",
+                "frontend",
+                "components"
+            ),
+            "@containers": path.resolve(
+                __dirname,
+                "src",
+                "frontend",
+                "containers"
+            ),
+            "@styles": path.resolve(
+                __dirname,
+                "src",
+                "frontend",
+                "assets",
+                "styles"
+            ),
+            "@static": path.resolve(
+                __dirname,
+                "src",
+                "frontend",
+                "assets",
+                "static"
+            ),
         },
     },
     module: {
