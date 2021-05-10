@@ -26,8 +26,8 @@ if (ENV === "development") {
 }
 
 app.get("*", (req, res) => {
-    res.send(`
-        <html>
+    res.send(
+        `<html>
             <head>
                 <title>Platzi video</title>
                 <link href="assets/app.css" type="text/css" rel="stylesheet"/>
@@ -36,8 +36,8 @@ app.get("*", (req, res) => {
                 <div id="app"></div>
                 <script src="assets/app.js" type="text/javascript"></script>
             </body>
-        </html>
-    `);
+        </html>`
+    );
 });
 
 app.listen(PORT, (err) => {
