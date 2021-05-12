@@ -32,7 +32,7 @@ const app = express();
 
 // Development config
 if (ENV === "development") {
-    const webpackConfig = require("../../webpack.config.dev");
+    const webpackConfig = require("../../webpack.config");
     const webpackDevMiddleware = require("webpack-dev-middleware");
     const webpackHotMiddleware = require("webpack-hot-middleware");
     const compiler = webpack(webpackConfig);
@@ -45,7 +45,7 @@ if (ENV === "development") {
 } else {
     app.use(morgan("common"));
     app.use(express.static(`${__dirname}/public`));
-    app.use(helmet());
+    app.use(helmet({ contentSecurityPolicy: false }));
     app.use(helmet.permittedCrossDomainPolicies());
 }
 
