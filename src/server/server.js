@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import helmet from "helmet";
 import webpack from "webpack";
+import getManifest from "./getManifest";
 
 // React
 import React from "react";
@@ -43,13 +44,20 @@ if (ENV === "development") {
     app.use(webpackHotMiddleware(compiler));
     app.use(morgan("dev"));
 } else {
+    app.use((req, res, next) => {
+        if (!req.hashManifest) req.hashManifest = getManifest();
+        next();
+    });
     app.use(morgan("common"));
     app.use(express.static(`${__dirname}/public`));
     app.use(helmet({ contentSecurityPolicy: false }));
     app.use(helmet.permittedCrossDomainPolicies());
 }
 
-const setResponse = (html, preloadedState) => {
+const setResponse = (html, preloadedState, manifest) => {
+    const mainStyles = manifest ? manifest["main.css"] : "assets/app.css";
+    const mainBuild = manifest ? manifest["main.js"] : "assets/app.js";
+
     return `
         <!DOCTYPE html>
         <html lang="es">
@@ -58,7 +66,7 @@ const setResponse = (html, preloadedState) => {
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Platzi Video</title>
-                <link href="assets/app.css" type="text/css" rel="stylesheet"/>
+                <link href=${mainStyles} type="text/css" rel="stylesheet"/>
             </head>
             <body>
                 <div id="app">${html}</div>
@@ -67,7 +75,7 @@ const setResponse = (html, preloadedState) => {
                         preloadedState
                     ).replace(/</g, "\\u003c")}
                 </script>
-                <script src="assets/app.js" type="text/javascript"></script>
+                <script src=${mainBuild} type="text/javascript"></script>
             </body>
         </html>        
     `;
@@ -85,7 +93,7 @@ const renderApp = (req, res) => {
     );
 
     res.removeHeader("x-powered-by");
-    res.send(setResponse(html, preloadedState));
+    res.send(setResponse(html, preloadedState, req.hashManifest));
 };
 
 app.get("*", renderApp);
