@@ -1,9 +1,8 @@
 import React from "react";
-import { render } from "react-dom";
+import { hydrate } from "react-dom";
 import App from "./routes/App";
 import { Router } from "react-router";
 import { createBrowserHistory } from "history";
-import initialState from "./initialState";
 
 // Redux
 import { Provider } from "react-redux";
@@ -11,9 +10,12 @@ import { createStore } from "redux";
 import reducer from "./reducers";
 
 const history = createBrowserHistory();
-const store = createStore(reducer, initialState);
+const preloadedState = window.__PRELOADED_STATE__;
+const store = createStore(reducer, preloadedState);
 
-render(
+delete window.__PRELOADED_STATE__;
+
+hydrate(
     <Provider store={store}>
         <Router history={history}>
             <App />
