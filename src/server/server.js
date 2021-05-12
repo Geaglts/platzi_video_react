@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import helmet from "helmet";
 import webpack from "webpack";
 
 // React
@@ -43,6 +44,9 @@ if (ENV === "development") {
     app.use(morgan("dev"));
 } else {
     app.use(morgan("common"));
+    app.use(express.static(`${__dirname}/public`));
+    app.use(helmet());
+    app.use(helmet.permittedCrossDomainPolicies());
 }
 
 const setResponse = (html, preloadedState) => {
@@ -80,6 +84,7 @@ const renderApp = (req, res) => {
         </Provider>
     );
 
+    res.removeHeader("x-powered-by");
     res.send(setResponse(html, preloadedState));
 };
 
