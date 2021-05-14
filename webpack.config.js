@@ -22,7 +22,7 @@ module.exports = {
     entry,
     output: {
         path: path.resolve(__dirname, "src/server/public"),
-        filename: isDev ? "assets/app.js" : "assets/app-[hash].js",
+        filename: isDev ? "assets/app.js" : "assets/app-[contenthash].js",
         publicPath: "/",
     },
     mode: "development",
@@ -45,7 +45,7 @@ module.exports = {
                     {
                         loader: "file-loader",
                         options: {
-                            name: "assets/[hash].[ext]",
+                            name: "assets/[contenthash].[ext]",
                         },
                     },
                 ],
@@ -61,7 +61,7 @@ module.exports = {
               })
             : () => {},
         new MiniCssExtractPlugin({
-            filename: isDev ? "./assets/app.css" : "./assets/app-[hash].css",
+            filename: isDev ? "assets/app.css" : "assets/app-[contenthash].css",
         }),
         new SourceMapDevToolPlugin({
             filename: "[file].map",
@@ -72,6 +72,32 @@ module.exports = {
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin()],
+        splitChunks: {
+            chunks: "async",
+            cacheGroups: {
+                vendors: {
+                    name: "vendors",
+                    chunks: "all",
+                    reuseExistingChunk: true,
+                    priority: 1,
+                    filename: isDev
+                        ? "assets/vendor.js"
+                        : "assets/vendor-[contenthash].js",
+                    enforce: true,
+                    test(module) {
+                        const name =
+                            module.nameForCondition &&
+                            module.nameForCondition();
+                        return (chunk) => {
+                            return (
+                                chunk.name !== "vendors" &&
+                                /[\\/]node_modules[\\/]/.test(name)
+                            );
+                        };
+                    },
+                },
+            },
+        },
     },
     devtool: "source-map",
     devServer: {
