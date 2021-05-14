@@ -1,20 +1,20 @@
-import React from "react";
-import "../assets/styles/components/Search.scss";
+import React from 'react';
+import '../assets/styles/components/Search.scss';
 
 const Search = () => {
-    const main_title_text = "¿Qué quieres ver hoy?";
-    const main_inptu_placeholder = "Buscar...";
+  const mainTitleText = '¿Qué quieres ver hoy?';
+  const mainInputPlaceholder = 'Buscar...';
 
-    return (
-        <section className="main">
-            <h2 className="main__title">{main_title_text}</h2>
-            <input
-                className="main__input"
-                type="text"
-                placeholder={main_inptu_placeholder}
-            />
-        </section>
-    );
+  return (
+    <section className='main'>
+      <h2 className='main__title'>{mainTitleText}</h2>
+      <input
+        className='main__input'
+        type='text'
+        placeholder={mainInputPlaceholder}
+      />
+    </section>
+  );
 };
 
 export default Search;

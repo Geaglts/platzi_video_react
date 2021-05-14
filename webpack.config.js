@@ -6,6 +6,7 @@ const { SourceMapDevToolPlugin } = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 require("dotenv").config();
 
@@ -66,6 +67,12 @@ module.exports = {
         new SourceMapDevToolPlugin({
             filename: "[file].map",
         }),
+        isDev
+            ? new ESLintPlugin({
+                  extensions: ["js", "jsx"],
+                  exclude: "'./node_modules/",
+              })
+            : () => {},
         !isDev ? new WebpackManifestPlugin() : () => {},
         isDev ? () => {} : new CleanWebpackPlugin(),
     ],

@@ -1,15 +1,15 @@
-import React from "react";
-import "../assets/styles/App.scss";
+import React from 'react';
+import '../assets/styles/App.scss';
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './Header';
+import Footer from './Footer';
 
 const Layout = ({ children }) => (
-    <div className="App">
-        <Header />
-        {children}
-        <Footer />
-    </div>
+  <div className='App'>
+    <Header />
+    {children}
+    <Footer />
+  </div>
 );
 
 export default Layout;

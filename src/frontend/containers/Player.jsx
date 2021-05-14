@@ -1,52 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { getVideoSource } from "../actions";
-import "../assets/styles/components/Player.scss";
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getVideoSource } from '../actions';
+import '../assets/styles/components/Player.scss';
 
 const Player = (props) => {
-    const [loading, setLoading] = useState(true);
-    const { id } = props.match.params;
+  const { match, getVideoSource, history, playing } = props;
 
-    useEffect(() => {
-        props.getVideoSource(id);
-        setLoading(false);
-    }, []);
+  const [loading, setLoading] = useState(true);
+  const { id } = match.params;
 
-    const handleBack = () => {
-        props.history.goBack();
-    };
+  useEffect(() => {
+    getVideoSource(id);
+    setLoading(false);
+  }, []);
 
-    const hasPlaying = Object.keys(props.playing).length > 0;
+  const handleBack = () => {
+    history.goBack();
+  };
 
-    if (loading) return null;
+  const hasPlaying = Object.keys(playing).length > 0;
 
-    return hasPlaying ? (
-        <div className="Player">
-            <video controls autoPlay>
-                <source src={props.playing.source} type="video/mp4" />
-            </video>
-            <div className="Player-back">
-                <button type="button" onClick={handleBack}>
-                    Regresar
-                </button>
-            </div>
-        </div>
-    ) : (
-        <Redirect to="/404/" />
-    );
+  if (loading) return null;
+
+  return hasPlaying ? (
+    <div className='Player'>
+      <video controls autoPlay>
+        <source src={playing.source} type='video/mp4' />
+      </video>
+      <div className='Player-back'>
+        <button type='button' onClick={handleBack}>
+          Regresar
+        </button>
+      </div>
+    </div>
+  ) : (
+    <Redirect to='/404/' />
+  );
 };
 
 Player.propTypes = {};
 
 const mapStateToProps = (state) => {
-    return {
-        playing: state.playing,
-    };
+  return {
+    playing: state.playing,
+  };
 };
 
 const mapDispatchToProps = {
-    getVideoSource,
+  getVideoSource,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

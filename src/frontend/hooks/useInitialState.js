@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useInitialState = (API) => {
-    const [videos, setVideos] = useState(null);
+  const [videos, setVideos] = useState(null);
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch(API);
-            const data = await response.json();
-            setVideos(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await fetch(API);
+      const data = await response.json();
+      setVideos(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    return videos;
+  return videos;
 };
 
 export default useInitialState;
