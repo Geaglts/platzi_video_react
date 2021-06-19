@@ -5,9 +5,12 @@ import { createBrowserHistory } from 'history';
 
 // Redux
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import App from './routes/App';
 import reducer from './reducers';
+
+// Redux thunk
+import thunk from 'redux-thunk';
 
 const history = createBrowserHistory();
 const preloadedState = window.__PRELOADED_STATE__;
@@ -21,5 +24,5 @@ hydrate(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('app'),
+  document.getElementById('app')
 );
