@@ -5,16 +5,19 @@ import { createBrowserHistory } from 'history';
 
 // Redux
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import App from './routes/App';
 import reducer from './reducers';
 
 // Redux thunk
 import thunk from 'redux-thunk';
 
-const history = createBrowserHistory();
+// Compose configuration
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const preloadedState = window.__PRELOADED_STATE__;
-const store = createStore(reducer, preloadedState);
+const store = createStore(reducer, preloadedState, composeEnhancers(thunk));
+const history = createBrowserHistory();
 
 delete window.__PRELOADED_STATE__;
 
