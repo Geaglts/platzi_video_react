@@ -86,7 +86,7 @@ const setResponse = (html, preloadedState, manifest) => {
                 <div id="app">${html}</div>
                 <script>
                     window.__PRELOADED_STATE__ = ${JSON.stringify(
-                      preloadedState
+                      preloadedState,
                     ).replace(/</g, '\\u003c')}
                 </script>
                 <script src="${mainBuild}" type="text/javascript"></script>
@@ -103,7 +103,7 @@ const renderApp = (req, res) => {
       <StaticRouter location={req.url} context={{}}>
         <Layout>{renderRoutes(serverRoutes)}</Layout>
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
 
   res.removeHeader('x-powered-by');
@@ -122,20 +122,20 @@ app.post('/auth/sign-in', async function (req, res, next) {
   passport.authenticate('basic', function (error, data) {
     try {
       if (error || !data) {
-        next(boom.unauthorized());
+        return next(boom.unauthorized());
       }
 
-      req.login(data, { session: false }, async function (error) {
-        if (error) {
-          next(error);
+      req.login(data, { session: false }, async function (err) {
+        if (err) {
+          return next(err);
         }
 
         const { token, ...user } = data;
         // Si el atributo rememberMe es verdadero la expiración será en 30 dias
         // de lo contrario la expiración será en 2 horas
         res.cookie('token', token, {
-          httpOnly: !config.dev,
-          secure: !config.dev,
+          httpOnly: !(ENV === 'development'),
+          secure: !(ENV === 'development'),
           maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
         });
 
