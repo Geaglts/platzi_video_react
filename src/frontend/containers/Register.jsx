@@ -18,8 +18,7 @@ const Register = ({ registerUser, history }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    registerUser(form);
-    history.push('/');
+    registerUser(form, '/login');
   };
 
   return (
