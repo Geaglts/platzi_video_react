@@ -1,3 +1,6 @@
+// Dependencies
+import axios from 'axios';
+
 export const actions = {
   setFavorite: 'SET_FAVORITE',
   deleteFavorite: 'DELETE_FAVORITE',
@@ -36,3 +39,12 @@ export const getVideoSource = (payload) => ({
   type: actions.getVideoSource,
   payload,
 });
+
+// Promises
+export const registerUser = (payload, redirectUrl) => {
+  return async (dispatch) => {
+    const { data } = await axios.post('/auth/sign-up', payload);
+    dispatch(registerRequest(data));
+    window.location.href = redirectUrl;
+  };
+};
