@@ -22,9 +22,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from '../frontend/reducers';
 
-// Initial state
-import initialState from '../frontend/initialState';
-
 // Integration bff
 import passport from 'passport';
 import boom from '@hapi/boom';
@@ -96,12 +93,34 @@ const setResponse = (html, preloadedState, manifest) => {
 };
 
 const renderApp = (req, res) => {
+  let initialState;
+  const { email, name, id } = req.cookies;
+  if (id) {
+    initialState = {
+      user: {
+        email,
+        name,
+        id,
+      },
+      mylist: [],
+      trends: [],
+      originals: [],
+    };
+  } else {
+    initialState = {
+      user: {},
+      mylist: [],
+      trends: [],
+      originals: [],
+    };
+  }
   const store = createStore(reducer, initialState);
   const preloadedState = store.getState();
+  const isLogged = initialState.user.id;
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={{}}>
-        <Layout>{renderRoutes(serverRoutes)}</Layout>
+        <Layout>{renderRoutes(serverRoutes(isLogged))}</Layout>
       </StaticRouter>
     </Provider>,
   );
