@@ -19,9 +19,9 @@ const Player = (props) => {
     history.goBack();
   };
 
-  const hasPlaying = Object.keys(playing).length > 0;
-
   if (loading) return null;
+
+  const hasPlaying = Object.keys(playing).length > 0 || null;
 
   return hasPlaying ? (
     <div className='Player'>
