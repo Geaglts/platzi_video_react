@@ -10,9 +10,7 @@ const reducer = (state, action) => {
     case actions.deleteFavorite:
       return {
         ...state,
-        mylist: state.mylist.filter(
-          (item) => item.id !== action.payload,
-        ),
+        mylist: state.mylist.filter((item) => item._id !== action.payload),
       };
     case actions.loginRequest:
       return {
@@ -33,13 +31,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         playing:
-                    state.trends.find(
-                      (item) => item.id === Number(action.payload),
-                    ) ||
-                    state.originals.find(
-                      (item) => item.id === Number(action.payload),
-                    ) ||
-                    {},
+          state.trends.find((item) => item.id === Number(action.payload)) ||
+          state.originals.find((item) => item.id === Number(action.payload)) ||
+          {},
       };
     default:
       return state;

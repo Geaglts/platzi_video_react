@@ -230,6 +230,27 @@ app.post('/user-movies', async function (req, res, next) {
   }
 });
 
+app.delete('/user-movies/:userMovieId', async function (req, res, next) {
+  try {
+    const { userMovieId } = req.params;
+    const { token } = req.cookies;
+
+    const { data, status } = await axios({
+      url: `${process.env.API_URL}/api/user-movies/${userMovieId}`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'delete',
+    });
+
+    if (status !== 200) {
+      return next(boom.badImplementation());
+    }
+
+    res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.get('*', renderApp);
 
 app.listen(PORT, (err) => {
