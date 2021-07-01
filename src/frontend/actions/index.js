@@ -70,3 +70,18 @@ export const loginUser = ({ email, password }, redirectUrl) => {
     }
   };
 };
+
+export const addUserMovie = (userMovie) => {
+  return async (dispatch) => {
+    const { userId, ...restUserMovie } = userMovie;
+    try {
+      await axios({
+        url: '/user-movies',
+        method: 'post',
+        data: { userId, movieId: restUserMovie.movieId },
+      });
+
+      dispatch(setFavorite(restUserMovie));
+    } catch (error) {}
+  };
+};
