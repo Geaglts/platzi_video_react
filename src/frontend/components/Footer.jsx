@@ -7,6 +7,7 @@ const Footer = () => {
       <a href='/'>Términos de uso</a>
       <a href='/'>Declaración de privacidad</a>
       <a href='/'>Centro de ayuda</a>
+      <a href='/'>Redes sociales</a>
     </footer>
   );
 };

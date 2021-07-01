@@ -1,4 +1,5 @@
 import React from 'react';
+import { create } from 'react-test-renderer';
 import { mount } from 'enzyme';
 import Footer from '../../components/Footer';
 
@@ -11,6 +12,11 @@ describe('<Footer />', () => {
   });
 
   test('Footer haves 3 anchors', () => {
-    expect(footer.find('a')).toHaveLength(3);
+    expect(footer.find('a')).toHaveLength(4);
+  });
+
+  test('Footer Snapshot', () => {
+    const footer = create(<Footer />);
+    expect(footer.toJSON()).toMatchSnapshot(); // comando para actualizar snapshots: jest -u
   });
 });
