@@ -19,17 +19,18 @@ const Header = ({ user, logoutRequest }) => {
   const hasUser = Object.keys(user).length > 0;
 
   const handleLogout = () => {
+    document.cookie = 'email=';
+    document.cookie = 'name=';
+    document.cookie = 'id=';
+    document.cookie = 'token=';
     logoutRequest({});
+    window.location.href = '/login';
   };
 
   return (
     <header className='header'>
       <Link to='/'>
-        <img
-          className='header__img'
-          src={logo}
-          alt='Logo de platzi video'
-        />
+        <img className='header__img' src={logo} alt='Logo de platzi video' />
       </Link>
       <div className='header__menu'>
         <div className='header__menu--profile'>
