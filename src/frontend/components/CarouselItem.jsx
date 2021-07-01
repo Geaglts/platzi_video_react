@@ -26,7 +26,7 @@ const CarouselItem = (props) => {
   };
 
   const handleDeleteFavorite = () => {
-    props.removeUserMovie(props._id);
+    props.removeUserMovie({ movieId: props._id, userMovies: props.userMovies });
   };
 
   return (
@@ -76,6 +76,7 @@ CarouselItem.propTypes = {
 const mapStateToProps = (state) => {
   return {
     userId: state.user.id,
+    userMovies: state.userMovies,
   };
 };
 

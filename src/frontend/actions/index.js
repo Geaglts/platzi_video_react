@@ -86,14 +86,17 @@ export const addUserMovie = (userMovie) => {
   };
 };
 
-export const removeUserMovie = (userMovieId) => {
+export const removeUserMovie = ({ movieId, userMovies }) => {
   return async (dispatch) => {
+    const userMovieId = userMovies.find(
+      (userMovie) => userMovie.movieId === movieId,
+    );
     try {
       await axios({
-        url: `/user-movies/${userMovieId}`,
+        url: `/user-movies/${userMovieId._id}`,
         method: 'delete',
       });
-      dispatch(deleteFavorite(userMovieId));
+      dispatch(deleteFavorite(movieId));
     } catch (error) {}
   };
 };

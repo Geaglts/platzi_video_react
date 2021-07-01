@@ -106,21 +106,19 @@ const renderApp = async (req, res) => {
       url: `${process.env.API_URL}/api/user-movies/`,
       headers: { Authorization: `Bearer ${token}` },
       method: 'get',
-      data: {
-        userId: id,
-      },
     });
-    userMovies = userMovies.data.data.map((um) => um.movieId);
+    const movieIds = userMovies.data.data.map((um) => um.movieId);
     movieList = movieList.data.data;
     initialState = {
       user: { id, name, email },
-      mylist: movieList.filter((movie) => userMovies.includes(movie._id)),
+      mylist: movieList.filter((movie) => movieIds.includes(movie._id)),
       trends: movieList.filter(
         (movie) => movie.contentRating === 'PG' && movie._id,
       ),
       originals: movieList.filter(
         (movie) => movie.contentRating === 'G' && movie._id,
       ),
+      userMovies: userMovies.data.data,
     };
   } catch (error) {
     initialState = {
@@ -128,6 +126,7 @@ const renderApp = async (req, res) => {
       mylist: [],
       trends: [],
       originals: [],
+      userMovies: [],
     };
   }
 
