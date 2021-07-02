@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import ProviderMock from '../../__mocks__/ProviderMock';
 
 describe('<Register />', () => {
-  test('', () => {
+  test('Register Form', () => {
     const preventDefault = jest.fn();
     const register = mount(
       <ProviderMock>
