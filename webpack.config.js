@@ -10,7 +10,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 require('dotenv').config();
 
-const isDev = process.env.ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 const entry = ['./src/frontend/index.js'];
 
 if (isDev) {
