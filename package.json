@@ -12,6 +12,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
+  "engines": {
+    "node": "12.16.x"
+  },
   "keywords": [],
   "author": "Miguel Angel Toledo Santiago <geaglts@gmail.com>",
   "license": "MIT",
