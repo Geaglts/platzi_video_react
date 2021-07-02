@@ -10,8 +10,6 @@
     "lint": "eslint src/frontend/ --ext .js --ext .jsx --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
-    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;",
     "test:coverage": "jest --coverage"
   },
   "engines": {
@@ -21,6 +19,7 @@
   "author": "Miguel Angel Toledo Santiago <geaglts@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.14.6",
     "@babel/register": "^7.13.16",
     "@hapi/boom": "^9.1.2",
     "asset-require-hook": "^1.2.0",
@@ -53,7 +52,6 @@
     "webpack": "^5.36.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.16",
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-react": "^7.13.13",
