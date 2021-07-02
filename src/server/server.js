@@ -30,7 +30,7 @@ import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
-const { ENV, PORT } = process.env;
+const { NODE_ENV, PORT } = process.env;
 
 const app = express();
 // Integration bff middlewares
@@ -43,7 +43,7 @@ app.use(passport.session());
 import './utils/auth/strategies/basic';
 
 // Development config
-if (ENV === 'development') {
+if (NODE_ENV === 'development') {
   const webpackConfig = require('../../webpack.config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -169,8 +169,8 @@ app.post('/auth/sign-in', async function (req, res, next) {
         // Si el atributo rememberMe es verdadero la expiración será en 30 dias
         // de lo contrario la expiración será en 2 horas
         res.cookie('token', token, {
-          httpOnly: !(ENV === 'development'),
-          secure: !(ENV === 'development'),
+          httpOnly: !(NODE_ENV === 'development'),
+          secure: !(NODE_ENV === 'development'),
           maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
         });
 

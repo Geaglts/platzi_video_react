@@ -26,7 +26,7 @@ module.exports = {
     filename: isDev ? 'assets/app.js' : 'assets/app-[contenthash].js',
     publicPath: '/',
   },
-  mode: process.env.ENV,
+  mode: process.env.NODE_ENV,
   resolve: { extensions: ['.js', '.jsx'] },
   module: {
     rules: [
