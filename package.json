@@ -8,7 +8,8 @@
     "start:dev": "nodemon src/server/index.js",
     "lint": "eslint src/frontend/ --ext .js --ext .jsx --fix",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "Miguel Angel Toledo Santiago <geaglts@gmail.com>",
@@ -75,6 +76,7 @@
     "webpack-manifest-plugin": "^3.1.1"
   },
   "jest": {
+    "verbose": true,
     "setupFilesAfterEnv": [
       "<rootDir>/src/frontend/__test__/setupTest.js"
     ],
